@@ -1,6 +1,7 @@
 package com.sheffmachine.spring5recipe.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class Recipe {
     //todo: Add
     //private Difficulty difficulty
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
     private Byte[] image;
     @Enumerated(value = EnumType.STRING) // overrides the default behavior of ordinal
@@ -33,10 +34,10 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Set<Ingredient> getIngredients() {
-        return ingredients;
+        return ingredients = new HashSet<>();
     }
 
     public void setIngredients(Set<Ingredient> ingredients) {
